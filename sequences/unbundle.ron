@@ -1,6 +1,27 @@
 (
     commands: [
         [
+            "git",
+            "reset",
+            "HEAD",
+        ],
+        [
+            "cp",
+            "testbench/equivalence/src/bundle.ron",
+            "testbench/equivalence/grpc/scoreboard/bundle.ron",
+        ],
+        [
+            "cp",
+            "testbench/equivalence/src/bundle.ron",
+            "testbench/equivalence/tarpc/scoreboard/bundle.ron",
+        ],
+        [
+            "git",
+            "add",
+            "testbench/equivalence/tarpc/scoreboard/bundle.ron",
+            "testbench/equivalence/grpc/scoreboard/bundle.ron",
+        ],
+        [
             "autoschematic",
             "unbundle",
             "--no-stage",
@@ -18,30 +39,6 @@
         (
             kind: "filter",
             params: [
-                ".bundle/scoreboard/bundle.1.out.bun.ron",
-            ],
-        ),
-        (
-            kind: "filter",
-            params: [
-                ".bundle/scoreboard/bundle.2.out.bun.ron",
-            ],
-        ),
-        (
-            kind: "filter",
-            params: [
-                "scoreboard/bundle.1.out",
-            ],
-        ),
-        (
-            kind: "filter",
-            params: [
-                "scoreboard/bundle.2.out",
-            ],
-        ),
-        (
-            kind: "filter",
-            params: [
                 "scoreboard/bundle.ron",
             ],
         ),
@@ -49,13 +46,7 @@
             kind: "unbundle",
             params: [
                 "scoreboard/bundle.ron",
-                "ScoreboardState(\n    random_int: -1935405647,\n)",
-            ],
-        ),
-        (
-            kind: "filter",
-            params: [
-                "scoreboard/resource.ron",
+                "ScoreboardState(\n    random_int: 0,\n)",
             ],
         ),
     ],

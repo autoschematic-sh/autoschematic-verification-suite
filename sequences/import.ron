@@ -45,13 +45,13 @@
         (
             kind: "addr_phy_to_virt",
             params: [
-                "scoreboard/scoreboard.ron",
+                "scoreboard/resource.ron",
             ],
         ),
         (
             kind: "get",
             params: [
-                "scoreboard/scoreboard.ron",
+                "scoreboard/resource.ron",
             ],
         ),
         (
@@ -67,7 +67,7 @@
         (
             kind: "addr_phy_to_virt",
             params: [
-                "scoreboard/scoreboard.ron",
+                "scoreboard/resource.ron",
             ],
         ),
     ],

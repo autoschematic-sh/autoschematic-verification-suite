@@ -1,6 +1,27 @@
 (
     commands: [
         [
+            "git",
+            "reset",
+            "HEAD",
+        ],
+        [
+            "cp",
+            "testbench/equivalence/src/resource.ron",
+            "testbench/equivalence/grpc/scoreboard/resource.ron",
+        ],
+        [
+            "cp",
+            "testbench/equivalence/src/resource.ron",
+            "testbench/equivalence/tarpc/scoreboard/resource.ron",
+        ],
+        [
+            "git",
+            "add",
+            "testbench/equivalence/tarpc/scoreboard/resource.ron",
+            "testbench/equivalence/grpc/scoreboard/resource.ron",
+        ],
+        [
             "autoschematic",
             "plan",
         ],
@@ -17,27 +38,27 @@
         (
             kind: "filter",
             params: [
-                "scoreboard/scoreboard.ron",
+                "scoreboard/resource.ron",
             ],
         ),
         (
             kind: "addr_virt_to_phy",
             params: [
-                "scoreboard/scoreboard.ron",
+                "scoreboard/resource.ron",
             ],
         ),
         (
             kind: "get",
             params: [
-                "scoreboard/scoreboard.ron",
+                "scoreboard/resource.ron",
             ],
         ),
         (
             kind: "plan",
             params: [
-                "scoreboard/scoreboard.ron",
+                "scoreboard/resource.ron",
                 "ScoreboardState(\n    random_int: -1935405647,\n)",
-                "ScoreboardState(\n    random_int: -1935405647,\n)",
+                "ScoreboardState(\n    random_int: 0,\n)",
             ],
         ),
     ],

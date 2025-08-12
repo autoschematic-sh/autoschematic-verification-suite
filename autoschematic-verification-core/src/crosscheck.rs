@@ -23,7 +23,7 @@ pub fn compare(db1: redb::Database, db2: redb::Database, quiet: bool) -> anyhow:
         if tx1 != tx2 {
             err = true;
             if !quiet {
-                eprintln!("{}: {:#?}", "Diff".red(), tx1.diff(&tx2));
+                eprintln!("{}: {:#?} {:#?}", "Diff".red(), tx1, tx2);
             }
         } else {
             if !quiet {
@@ -56,7 +56,8 @@ pub fn compare_with_vec(
         if tx1 != *tx2 {
             err = true;
             if !quiet {
-                eprintln!("{}: {:#?}", "Diff".red(), tx1.diff(&tx2));
+                // eprintln!("{}: {:#?}", "Diff".red(), tx1.diff(&tx2));
+                eprintln!("{}: {:#?} {:#?}", "Diff".red(), tx1, tx2);
             }
         } else {
             if !quiet {

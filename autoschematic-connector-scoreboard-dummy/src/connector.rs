@@ -81,8 +81,8 @@ impl Connector for ScoreboardConnector {
         .write(&self.db)?;
 
         Ok(vec![
+            // ScoreboardAddress::Bundle {}.to_path_buf(),
             ScoreboardAddress::Resource {}.to_path_buf(),
-            ScoreboardAddress::Bundle {}.to_path_buf(),
         ])
     }
 
