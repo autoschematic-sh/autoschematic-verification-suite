@@ -1,4 +1,4 @@
-use std::process::Command;
+use std::{path::PathBuf, process::Command};
 
 use itertools::Itertools;
 use redb::{ReadableDatabase, ReadableTable};
@@ -16,7 +16,11 @@ pub struct Sequence {
 impl Sequence {
     pub fn run(&self) -> anyhow::Result<()> {
         for tx_store in &self.tx_stores {
-            std::fs::remove_file(tx_store)?;
+            let tx_store = PathBuf::from(tx_store);
+
+            if tx_store.is_file() {
+                std::fs::remove_file(tx_store)?;
+            }
         }
 
         for command in &self.commands {
@@ -30,15 +34,16 @@ impl Sequence {
             crosscheck::compare_with_vec(db1, &self.expected_txs, false)?;
         }
 
-        // let db1 = redb::Database::open("testbench/equivalence/tarpc/scoreboard.redb")?;
-        // let db2 = redb::Database::open("testbench/equivalence/grpc/scoreboard.redb")?;
-
         Ok(())
     }
 
     pub fn record(&mut self) -> anyhow::Result<()> {
         for tx_store in &self.tx_stores {
-            std::fs::remove_file(tx_store)?;
+            let tx_store = PathBuf::from(tx_store);
+
+            if tx_store.is_file() {
+                std::fs::remove_file(tx_store)?;
+            }
         }
 
         for command in &self.commands {
@@ -57,22 +62,12 @@ impl Sequence {
         let db1 = redb::Database::open(self.tx_stores.first().unwrap())?;
         let read_txn1 = db1.begin_read()?;
         let table1 = read_txn1.open_table(TABLE)?;
-        
+
         for tx in table1.iter()? {
             let tx = tx?.1.value();
             let tx: Transaction = serde_json::from_str(&tx)?;
             self.expected_txs.push(tx);
         }
-        
-
-        // let read_txn2 = db2.begin_read()?;
-        // let table2 = read_txn2.open_table(TABLE)?;
-
-        // let mut err = false;
-        // for (a, b) in table1.iter()?.zip(table2.iter()?) {
-
-        // let db1 = redb::Database::open("testbench/equivalence/tarpc/scoreboard.redb")?;
-        // let db2 = redb::Database::open("testbench/equivalence/grpc/scoreboard.redb")?;
 
         Ok(())
     }
