@@ -1,0 +1,62 @@
+(
+    commands: [
+        [
+            "autoschematic",
+            "unbundle",
+            "--no-stage",
+        ],
+    ],
+    tx_stores: [
+        "testbench/equivalence/tarpc/scoreboard.redb",
+        "testbench/equivalence/grpc/scoreboard.redb",
+    ],
+    expected_txs: [
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "filter",
+            params: [
+                ".bundle/scoreboard/bundle.1.out.bun.ron",
+            ],
+        ),
+        (
+            kind: "filter",
+            params: [
+                ".bundle/scoreboard/bundle.2.out.bun.ron",
+            ],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/bundle.1.out",
+            ],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/bundle.2.out",
+            ],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/bundle.ron",
+            ],
+        ),
+        (
+            kind: "unbundle",
+            params: [
+                "scoreboard/bundle.ron",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+            ],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/resource.ron",
+            ],
+        ),
+    ],
+)

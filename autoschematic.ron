@@ -1,0 +1,32 @@
+AutoschematicConfig(
+    prefixes: {
+        "testbench/equivalence/tarpc": Prefix(
+            connectors: [
+                Connector(
+                    shortname: "scoreboard",
+                    spec: CargoLocal(
+                        path: "/home/pete/prog/autoschematic-verification-suite/autoschematic-connector-scoreboard-dummy",
+                        protocol: Tarpc
+                    ),
+                    env: {
+                        "PROTOCOL": "TARPC"
+                    }
+                ),
+            ]
+        ),
+        "testbench/equivalence/grpc": Prefix(
+            connectors: [
+                Connector(
+                    shortname: "scoreboard",
+                    spec: CargoLocal(
+                        path: "/home/pete/prog/autoschematic-verification-suite/autoschematic-connector-scoreboard-dummy",
+                        protocol: Grpc
+                    ),
+                    env: {
+                        "PROTOCOL": "GRPC"
+                    }
+                ),
+            ]
+        ),
+    },
+)

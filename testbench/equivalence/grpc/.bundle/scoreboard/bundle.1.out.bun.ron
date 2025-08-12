@@ -1,0 +1,3 @@
+ChildOf(
+    parent: "scoreboard/bundle.ron",
+)

@@ -1,0 +1,74 @@
+(
+    commands: [
+        [
+            "autoschematic",
+            "import",
+            "-p",
+            "testbench/equivalence/tarpc",
+            "--overwrite",
+        ],
+        [
+            "autoschematic",
+            "import",
+            "-p",
+            "testbench/equivalence/grpc",
+            "--overwrite",
+        ],
+        [
+            "autoschematic",
+            "import",
+            "-p",
+            "testbench/equivalence/tarpc",
+        ],
+        [
+            "autoschematic",
+            "import",
+            "-p",
+            "testbench/equivalence/grpc",
+        ],
+    ],
+    tx_stores: [
+        "testbench/equivalence/tarpc/scoreboard.redb",
+        "testbench/equivalence/grpc/scoreboard.redb",
+    ],
+    expected_txs: [
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "list",
+            params: [
+                "./",
+            ],
+        ),
+        (
+            kind: "addr_phy_to_virt",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "get",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "list",
+            params: [
+                "./",
+            ],
+        ),
+        (
+            kind: "addr_phy_to_virt",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+    ],
+)

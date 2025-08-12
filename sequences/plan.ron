@@ -1,0 +1,44 @@
+(
+    commands: [
+        [
+            "autoschematic",
+            "plan",
+        ],
+    ],
+    tx_stores: [
+        "testbench/equivalence/tarpc/scoreboard.redb",
+        "testbench/equivalence/grpc/scoreboard.redb",
+    ],
+    expected_txs: [
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "get",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "plan",
+            params: [
+                "scoreboard/scoreboard.ron",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+            ],
+        ),
+    ],
+)

@@ -1,0 +1,8 @@
+[workspace]
+resolver = "3"
+
+members = [
+    "autoschematic-testbench",
+    "autoschematic-connector-scoreboard-dummy",
+    "autoschematic-verification-core",
+]

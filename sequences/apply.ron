@@ -1,0 +1,176 @@
+(
+    commands: [
+        [
+            "autoschematic",
+            "plan",
+        ],
+        [
+            "autoschematic",
+            "apply",
+            "--skip-confirm",
+            "--skip-commit",
+        ],
+        [
+            "autoschematic",
+            "plan",
+        ],
+        [
+            "autoschematic",
+            "apply",
+            "--skip-confirm",
+            "--skip-commit",
+        ],
+    ],
+    tx_stores: [
+        "testbench/equivalence/tarpc/scoreboard.redb",
+        "testbench/equivalence/grpc/scoreboard.redb",
+    ],
+    expected_txs: [
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "get",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "plan",
+            params: [
+                "scoreboard/scoreboard.ron",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+            ],
+        ),
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "get",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "plan",
+            params: [
+                "scoreboard/scoreboard.ron",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "op_exec",
+            params: [
+                "scoreboard/scoreboard.ron",
+                "SetState(random_int:-1935405647)",
+            ],
+        ),
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "get",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "plan",
+            params: [
+                "scoreboard/scoreboard.ron",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+            ],
+        ),
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "get",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "plan",
+            params: [
+                "scoreboard/scoreboard.ron",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+                "ScoreboardState(\n    random_int: -1935405647,\n)",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/scoreboard.ron",
+            ],
+        ),
+        (
+            kind: "op_exec",
+            params: [
+                "scoreboard/scoreboard.ron",
+                "SetState(random_int:-1935405647)",
+            ],
+        ),
+    ],
+)
