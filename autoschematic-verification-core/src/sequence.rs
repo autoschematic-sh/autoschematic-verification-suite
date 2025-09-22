@@ -25,9 +25,13 @@ impl Sequence {
         }
 
         for command in &self.commands {
-            Command::new(command.first().unwrap())
-                .args(command.into_iter().skip(1))
-                .status()?;
+            let cmd = command.first().unwrap();
+            let args = command.into_iter().skip(1);
+
+            Command::new(cmd)
+                .args(args)
+                .status()
+                .context(format!("Running command {}", cmd))?;
         }
 
         for tx_store in &self.tx_stores {
@@ -48,9 +52,13 @@ impl Sequence {
         }
 
         for command in &self.commands {
-            Command::new(command.first().unwrap())
-                .args(command.into_iter().skip(1))
-                .status()?;
+            let cmd = command.first().unwrap();
+            let args = command.into_iter().skip(1);
+
+            Command::new(cmd)
+                .args(args)
+                .status()
+                .context(format!("Running command {}", cmd))?;
         }
 
         for (store1, store2) in self.tx_stores.iter().tuple_windows() {
