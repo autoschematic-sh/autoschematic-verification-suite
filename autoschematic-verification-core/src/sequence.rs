@@ -1,5 +1,6 @@
 use std::{path::PathBuf, process::Command};
 
+use anyhow::Context;
 use itertools::Itertools;
 use redb::{ReadableDatabase, ReadableTable};
 use serde::{Deserialize, Serialize};
@@ -19,7 +20,7 @@ impl Sequence {
             let tx_store = PathBuf::from(tx_store);
 
             if tx_store.is_file() {
-                std::fs::remove_file(tx_store)?;
+                std::fs::remove_file(&tx_store).context(format!("rm {}", tx_store.display()))?;
             }
         }
 
@@ -30,7 +31,7 @@ impl Sequence {
         }
 
         for tx_store in &self.tx_stores {
-            let db1 = redb::Database::open(tx_store)?;
+            let db1 = redb::Database::open(tx_store).context(format!("open db {}", tx_store))?;
             crosscheck::compare_with_vec(db1, &self.expected_txs, false)?;
         }
 
@@ -42,7 +43,7 @@ impl Sequence {
             let tx_store = PathBuf::from(tx_store);
 
             if tx_store.is_file() {
-                std::fs::remove_file(tx_store)?;
+                std::fs::remove_file(&tx_store).context(format!("rm {}", tx_store.display()))?;
             }
         }
 
@@ -53,13 +54,14 @@ impl Sequence {
         }
 
         for (store1, store2) in self.tx_stores.iter().tuple_windows() {
-            let db1 = redb::Database::open(store1)?;
-            let db2 = redb::Database::open(store2)?;
+            let db1 = redb::Database::open(store1).context(format!("open db {}", store1))?;
+            let db2 = redb::Database::open(store2).context(format!("open db {}", store1))?;
             crosscheck::compare(db1, db2, false)?;
         }
 
         self.expected_txs = Vec::new();
-        let db1 = redb::Database::open(self.tx_stores.first().unwrap())?;
+        let db_path = self.tx_stores.first().unwrap();
+        let db1 = redb::Database::open(db_path).context(format!("open db {}", db_path))?;
         let read_txn1 = db1.begin_read()?;
         let table1 = read_txn1.open_table(TABLE)?;
 
