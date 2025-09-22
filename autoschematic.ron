@@ -5,7 +5,7 @@ AutoschematicConfig(
                 Connector(
                     shortname: "scoreboard",
                     spec: CargoLocal(
-                        path: "/home/pete/prog/autoschematic-verification-suite/autoschematic-connector-scoreboard-dummy",
+                        path: "./autoschematic-connector-scoreboard-dummy",
                         protocol: Tarpc
                     ),
                     env: {
@@ -19,7 +19,7 @@ AutoschematicConfig(
                 Connector(
                     shortname: "scoreboard",
                     spec: CargoLocal(
-                        path: "/home/pete/prog/autoschematic-verification-suite/autoschematic-connector-scoreboard-dummy",
+                        path: "./autoschematic-connector-scoreboard-dummy",
                         protocol: Grpc
                     ),
                     env: {

@@ -156,11 +156,12 @@ dependencies = [
 
 [[package]]
 name = "autoschematic-core"
-version = "0.8.0"
+version = "0.8.1"
 dependencies = [
  "anyhow",
  "async-trait",
  "base64",
+ "bitmask-enum",
  "chacha20poly1305",
  "dashmap",
  "ecdsa",
@@ -173,13 +174,14 @@ dependencies = [
  "k256",
  "lazy_static",
  "libc",
+ "nix",
  "once_cell",
  "process-wrap",
  "prost",
  "rand 0.9.2",
  "rand_core 0.6.4",
  "regex",
- "ron-pfnsec-fork",
+ "ron 0.11.0",
  "secrecy",
  "serde",
  "serde_json",
@@ -211,7 +213,7 @@ dependencies = [
  "clap",
  "rand 0.9.2",
  "redb",
- "ron",
+ "ron 0.10.1",
  "tracing-subscriber",
 ]
 
@@ -322,6 +324,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1b8e56985ec62d17e9c1001dc89c88ecd7dc08e47eba5ec7c29c7b5eeecde967"
 dependencies = [
  "serde",
+]
+
+[[package]]
+name = "bitmask-enum"
+version = "2.2.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6cbbb8f56245b5a479b30a62cdc86d26e2f35c2b9f594bc4671654b03851380"
+dependencies = [
+ "quote",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -2184,10 +2196,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "ron-pfnsec-fork"
+name = "ron"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6b5a82d1264b07e3a12c59241f4952ffeadf8cf9b2a6f7da86185a94089e8265"
+checksum = "db09040cc89e461f1a265139777a2bde7f8d8c67c4936f700c63ce3e2904d468"
 dependencies = [
  "base64",
  "bitflags",
