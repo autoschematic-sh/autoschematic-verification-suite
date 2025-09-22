@@ -4,12 +4,12 @@ AutoschematicConfig(
             connectors: [
                 Connector(
                     shortname: "scoreboard",
-                    spec: CargoLocal(
-                        path: "./autoschematic-connector-scoreboard-dummy",
+                    spec: Cargo(
+                        name: "autoschematic-connector-scoreboard-dummy",
                         protocol: Tarpc
                     ),
                     env: {
-                        "PROTOCOL": "TARPC"
+                        "PROTOCOL": "TARPC",
                     }
                 ),
             ]
@@ -18,15 +18,45 @@ AutoschematicConfig(
             connectors: [
                 Connector(
                     shortname: "scoreboard",
-                    spec: CargoLocal(
-                        path: "./autoschematic-connector-scoreboard-dummy",
+                    spec: Cargo(
+                        name: "./autoschematic-connector-scoreboard-dummy",
                         protocol: Grpc
                     ),
                     env: {
-                        "PROTOCOL": "GRPC"
+                        "PROTOCOL": "GRPC",
                     }
                 ),
             ]
         ),
+        // For local development...
+        // (Don't forget to set "HOME": "/home/yourname")!
+        // "testbench/equivalence/tarpc": Prefix(
+        //     connectors: [
+        //         Connector(
+        //             shortname: "scoreboard",
+        //             spec: CargoLocal(
+        //                 path: "./autoschematic-connector-scoreboard-dummy",
+        //                 protocol: Tarpc
+        //             ),
+        //             env: {
+        //                 "PROTOCOL": "TARPC",
+        //             }
+        //         ),
+        //     ]
+        // ),
+        // "testbench/equivalence/grpc": Prefix(
+        //     connectors: [
+        //         Connector(
+        //             shortname: "scoreboard",
+        //             spec: CargoLocal(
+        //                 path: "./autoschematic-connector-scoreboard-dummy",
+        //                 protocol: Grpc
+        //             ),
+        //             env: {
+        //                 "PROTOCOL": "GRPC",
+        //             }
+        //         ),
+        //     ]
+        // ),
     },
 )
