@@ -1,6 +1,7 @@
 pub mod cmd;
 use std::process::Command;
 
+use anyhow::Context;
 use autoschematic_verification_core::{
     crosscheck,
     sequence::{self, Sequence},
@@ -30,7 +31,14 @@ fn main() -> anyhow::Result<()> {
             )?;
         }
         cmd::AutoschematicTestBenchSubcommand::Run { sequence } => {
-            let sequence: Sequence = ron::from_str(&std::fs::read_to_string(sequence)?)?;
+            let paths = std::fs::read_dir("./").unwrap();
+
+            for path in paths {
+                println!("Name: {}", path.unwrap().path().display())
+            }
+            let sequence: Sequence = ron::from_str(
+                &std::fs::read_to_string(&sequence).context(format!("reading {}", sequence))?,
+            )?;
             sequence.run()?;
         }
         cmd::AutoschematicTestBenchSubcommand::Record { sequence } => {

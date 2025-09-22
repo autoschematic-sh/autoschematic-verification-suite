@@ -1,6 +1,5 @@
 use anyhow::bail;
 use colored::Colorize;
-use diff::Diff;
 use redb::{ReadableDatabase, ReadableTable};
 
 use crate::{TABLE, tx::Transaction};
