@@ -132,7 +132,7 @@ checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
 name = "autoschematic-connector-scoreboard-dummy"
-version = "0.9.0"
+version = "0.10.0"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -156,7 +156,7 @@ dependencies = [
 
 [[package]]
 name = "autoschematic-core"
-version = "0.9.0"
+version = "0.10.0"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -182,7 +182,7 @@ dependencies = [
  "rand 0.9.2",
  "rand_core 0.6.4",
  "regex",
- "ron 0.11.0",
+ "ron",
  "secrecy",
  "serde",
  "serde_json",
@@ -214,19 +214,20 @@ dependencies = [
  "clap",
  "rand 0.9.2",
  "redb",
- "ron 0.10.1",
+ "ron",
  "tracing-subscriber",
 ]
 
 [[package]]
 name = "autoschematic-verification-core"
-version = "0.9.0"
+version = "0.10.0"
 dependencies = [
  "anyhow",
  "colored",
  "diff-struct",
  "itertools",
  "redb",
+ "ron",
  "serde",
  "serde_json",
 ]
@@ -2269,19 +2270,6 @@ dependencies = [
  "libc",
  "untrusted",
  "windows-sys 0.52.0",
-]
-
-[[package]]
-name = "ron"
-version = "0.10.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "beceb6f7bf81c73e73aeef6dd1356d9a1b2b4909e1f0fc3e59b034f9572d7b7f"
-dependencies = [
- "base64",
- "bitflags",
- "serde",
- "serde_derive",
- "unicode-ident",
 ]
 
 [[package]]
