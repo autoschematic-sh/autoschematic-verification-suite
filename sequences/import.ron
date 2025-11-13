@@ -6,6 +6,8 @@
             "-p",
             "testbench/equivalence/tarpc",
             "--overwrite",
+            "--commit",
+            "false",
         ],
         [
             "autoschematic",
@@ -13,18 +15,24 @@
             "-p",
             "testbench/equivalence/grpc",
             "--overwrite",
+            "--commit",
+            "false",
         ],
         [
             "autoschematic",
             "import",
             "-p",
             "testbench/equivalence/tarpc",
+            "--commit",
+            "false",
         ],
         [
             "autoschematic",
             "import",
             "-p",
             "testbench/equivalence/grpc",
+            "--commit",
+            "false",
         ],
     ],
     tx_stores: [
