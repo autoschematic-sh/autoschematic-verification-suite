@@ -5,10 +5,10 @@ edition = "2024"
 
 [dependencies]
 redb = "3.0.0"
-autoschematic-verification-core = { path = "../autoschematic-verification-core", version = "0.10.0", features = [
+autoschematic-verification-core = { path = "../autoschematic-verification-core", version = "0.11.0", features = [
 ] }
 anyhow = "1.0.99"
 rand = "0.9.2"
 clap = { version = "4.5.45", features = ["derive"] }
 tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
-ron = "0.11.0"
+ron = "0.12.0"

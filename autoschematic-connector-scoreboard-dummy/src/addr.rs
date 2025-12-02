@@ -1,4 +1,4 @@
-use std::path::{Path, PathBuf};
+use std::path::{PathBuf};
 
 use autoschematic_core::{connector::ResourceAddress, error_util::invalid_addr_path};
 
@@ -7,6 +7,9 @@ impl ResourceAddress for ScoreboardAddress {
         match self {
             ScoreboardAddress::Resource {} => PathBuf::from("scoreboard/resource.ron"),
             ScoreboardAddress::Bundle {} => PathBuf::from("scoreboard/bundle.ron"),
+            ScoreboardAddress::Task(ScoreboardTaskType::CountDown) => {
+                PathBuf::from("scoreboard/task/count_down.ron")
+            }
         }
     }
 
@@ -18,6 +21,8 @@ impl ResourceAddress for ScoreboardAddress {
             Ok(ScoreboardAddress::Resource {})
         } else if path == PathBuf::from("scoreboard/bundle.ron") {
             Ok(ScoreboardAddress::Bundle {})
+        } else if path == PathBuf::from("scoreboard/task/count_down.ron") {
+            Ok(ScoreboardAddress::Task(ScoreboardTaskType::CountDown))
         } else {
             Err(invalid_addr_path(path))
         }
@@ -25,7 +30,13 @@ impl ResourceAddress for ScoreboardAddress {
 }
 
 #[derive(Debug, Clone)]
+pub enum ScoreboardTaskType {
+    CountDown,
+}
+
+#[derive(Debug, Clone)]
 pub enum ScoreboardAddress {
-    Resource {},
-    Bundle {},
+    Resource,
+    Bundle,
+    Task(ScoreboardTaskType),
 }

@@ -5,14 +5,15 @@ use serde::{Deserialize, Serialize};
 
 use crate::TABLE;
 
-#[derive(Serialize, Deserialize)]
-#[derive(Debug, Default, PartialEq, Diff)]
+#[derive(Serialize, Deserialize, Debug, Default, PartialEq, Diff)]
 #[diff(attr(
     #[derive(Debug, PartialEq)]
 ))]
 pub struct Transaction {
     pub kind: String,
     pub params: Vec<String>,
+    // #[serde(skip_serializing_if = "Option::is_none")]
+    // pub result: Option<String>,
 }
 
 impl Transaction {

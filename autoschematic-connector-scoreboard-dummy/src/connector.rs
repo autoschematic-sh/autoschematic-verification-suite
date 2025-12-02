@@ -8,7 +8,8 @@ use autoschematic_core::{
     bundle::UnbundleResponseElement,
     connector::{
         Connector, ConnectorOp, ConnectorOutbox, FilterResponse, GetResourceResponse,
-        OpExecResponse, PlanResponseElement, Resource, ResourceAddress, VirtToPhyResponse,
+        OpExecResponse, PlanResponseElement, Resource, ResourceAddress, TaskExecResponse,
+        VirtToPhyResponse,
     },
     connector_op,
     diag::DiagnosticResponse,
@@ -21,7 +22,11 @@ use autoschematic_verification_core::tx::Transaction;
 use rand::{Rng, SeedableRng};
 use redb::Database;
 
-use crate::{addr::ScoreboardAddress, op::ScoreboardConnectorOp, resource::ScoreboardState};
+use crate::{
+    addr::{ScoreboardAddress, ScoreboardTaskType},
+    op::ScoreboardConnectorOp,
+    resource::ScoreboardState,
+};
 
 pub struct ScoreboardConnector {
     prefix: PathBuf,
@@ -69,6 +74,7 @@ impl Connector for ScoreboardConnector {
         match ScoreboardAddress::from_path(addr) {
             Ok(ScoreboardAddress::Resource {}) => Ok(FilterResponse::Resource),
             Ok(ScoreboardAddress::Bundle {}) => Ok(FilterResponse::Bundle),
+            Ok(ScoreboardAddress::Task(_)) => Ok(FilterResponse::Task),
             _ => Ok(FilterResponse::None),
         }
     }
@@ -137,7 +143,6 @@ impl Connector for ScoreboardConnector {
         let addr = ScoreboardAddress::from_path(addr)?;
 
         match addr {
-            ScoreboardAddress::Resource {} => Ok(Vec::new()),
             ScoreboardAddress::Bundle {} => Ok(vec![
                 UnbundleResponseElement {
                     addr: PathBuf::from("scoreboard/bundle.1.out"),
@@ -148,6 +153,7 @@ impl Connector for ScoreboardConnector {
                     contents: "testbench generic output".into(),
                 },
             ]),
+            _ => Ok(vec![]),
         }
     }
 
@@ -234,5 +240,56 @@ impl Connector for ScoreboardConnector {
         let _addr = ScoreboardAddress::from_path(addr)?;
 
         return ron_check_syntax::<ScoreboardState>(a);
+    }
+
+    async fn task_exec(
+        &self,
+        addr: &Path,
+        body: Vec<u8>,
+
+        // `arg` sets the initial argument for the task. `arg` is set to None after the first execution.
+        arg: Option<Vec<u8>>,
+        // The current state of the task as returned by a previous task_exec(...) call.
+        // state always starts as None when a task is first executed.
+        state: Option<Vec<u8>>,
+    ) -> anyhow::Result<TaskExecResponse> {
+        tracing::warn!(
+            "task_exec({}, {})",
+            addr.display(),
+            str::from_utf8(&body).unwrap()
+        );
+        Transaction {
+            kind: String::from("task_exec"),
+            params: vec![
+                addr.to_string_lossy().to_string(),
+                String::from_utf8(body)?,
+                String::from_utf8(arg.clone().unwrap_or_default())?,
+                String::from_utf8(state.clone().unwrap_or_default())?,
+            ],
+        }
+        .write(&self.db)?;
+
+        match ScoreboardAddress::from_path(addr)? {
+            ScoreboardAddress::Task(ScoreboardTaskType::CountDown) => {
+                let arg = arg.map(|s| str::parse::<usize>(str::from_utf8(&s).unwrap()).unwrap());
+                let state =
+                    state.map(|s| str::parse::<usize>(str::from_utf8(&s).unwrap()).unwrap());
+
+                let next_state = match state {
+                    Some(state) if state > 0 => Some(format!("{}", state - 1).into()),
+                    Some(_) => None,
+                    None => match arg {
+                        Some(initial) => Some(format!("{initial}").into()),
+                        None => None,
+                    },
+                };
+
+                Ok(TaskExecResponse {
+                    next_state,
+                    ..Default::default()
+                })
+            }
+            _ => Ok(TaskExecResponse::default()),
+        }
     }
 }

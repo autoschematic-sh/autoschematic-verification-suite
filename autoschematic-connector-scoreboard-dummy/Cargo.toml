@@ -1,6 +1,6 @@
 [package]
 name = "autoschematic-connector-scoreboard-dummy"
-version = "0.10.0"
+version = "0.11.0"
 edition = "2024"
 license = "MIT"
 description = "For testing use only. A simple connector that writes its operations to a scoreboard, a la UVM."
@@ -9,9 +9,9 @@ description = "For testing use only. A simple connector that writes its operatio
 tokio = { version = "1.45.0", features = ["rt-multi-thread"] }
 anyhow = "1.0.95"
 async-trait = "0.1.86"
-autoschematic-verification-core = { path = "../autoschematic-verification-core", version = "0.10.0", features = [
+autoschematic-verification-core = { path = "../autoschematic-verification-core", version = "0.11.0", features = [
 ] }
-autoschematic-core = { path = "../../autoschematic/autoschematic-core", version = "0.10.0", features = [
+autoschematic-core = { path = "../../autoschematic/autoschematic-core", version = "0.11.0", features = [
     "grpc",
 ] }
 serde = { version = "1.0.217", features = ["derive"] }

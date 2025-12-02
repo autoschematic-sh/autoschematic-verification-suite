@@ -19,7 +19,7 @@ AutoschematicConfig(
                 Connector(
                     shortname: "scoreboard",
                     spec: Cargo(
-                        name: "./autoschematic-connector-scoreboard-dummy",
+                        name: "autoschematic-connector-scoreboard-dummy",
                         protocol: Grpc
                     ),
                     env: {

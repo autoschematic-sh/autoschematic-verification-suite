@@ -1,0 +1,86 @@
+(
+    commands: [
+        [
+            "git",
+            "reset",
+            "HEAD",
+        ],
+        [
+            "autoschematic",
+            "run-task",
+            "--path",
+            "testbench/equivalence/tarpc/scoreboard/task/count_down.ron",
+            "--arg",
+            "3",
+        ],
+        [
+            "autoschematic",
+            "run-task",
+            "--path",
+            "testbench/equivalence/grpc/scoreboard/task/count_down.ron",
+            "--arg",
+            "3",
+        ],
+    ],
+    tx_stores: [
+        "testbench/equivalence/tarpc/scoreboard.redb",
+        "testbench/equivalence/grpc/scoreboard.redb",
+    ],
+    expected_txs: [
+        (
+            kind: "init",
+            params: [],
+        ),
+        (
+            kind: "filter",
+            params: [
+                "scoreboard/task/count_down.ron",
+            ],
+        ),
+        (
+            kind: "task_exec",
+            params: [
+                "scoreboard/task/count_down.ron",
+                "()",
+                "3",
+                "",
+            ],
+        ),
+        (
+            kind: "task_exec",
+            params: [
+                "scoreboard/task/count_down.ron",
+                "()",
+                "",
+                "3",
+            ],
+        ),
+        (
+            kind: "task_exec",
+            params: [
+                "scoreboard/task/count_down.ron",
+                "()",
+                "",
+                "2",
+            ],
+        ),
+        (
+            kind: "task_exec",
+            params: [
+                "scoreboard/task/count_down.ron",
+                "()",
+                "",
+                "1",
+            ],
+        ),
+        (
+            kind: "task_exec",
+            params: [
+                "scoreboard/task/count_down.ron",
+                "()",
+                "",
+                "0",
+            ],
+        ),
+    ],
+)

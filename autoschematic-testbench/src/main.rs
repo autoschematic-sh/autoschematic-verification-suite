@@ -1,11 +1,7 @@
 pub mod cmd;
-use std::process::Command;
 
 use anyhow::Context;
-use autoschematic_verification_core::{
-    crosscheck,
-    sequence::{self, Sequence},
-};
+use autoschematic_verification_core::sequence::Sequence;
 use clap::Parser;
 use ron::ser::PrettyConfig;
 use tracing_subscriber::EnvFilter;

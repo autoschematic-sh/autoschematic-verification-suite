@@ -14,7 +14,7 @@ impl Resource for ScoreboardState {
         Ok(RON.to_string_pretty(self, PrettyConfig::new())?.into())
     }
 
-    fn from_bytes(addr: &impl autoschematic_core::connector::ResourceAddress, s: &[u8]) -> Result<Self, anyhow::Error>
+    fn from_bytes(_addr: &impl autoschematic_core::connector::ResourceAddress, s: &[u8]) -> Result<Self, anyhow::Error>
     where
         Self: Sized,
     {

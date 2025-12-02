@@ -54,7 +54,7 @@ impl Sequence {
         for command in &self.commands {
             let cmd = command.first().unwrap();
             let args = command.into_iter().skip(1);
-
+            
             Command::new(cmd)
                 .args(args)
                 .status()
