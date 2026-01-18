@@ -38,6 +38,12 @@
             ],
         ),
         (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/task/count_down.ron",
+            ],
+        ),
+        (
             kind: "task_exec",
             params: [
                 "scoreboard/task/count_down.ron",
@@ -47,12 +53,24 @@
             ],
         ),
         (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/task/count_down.ron",
+            ],
+        ),
+        (
             kind: "task_exec",
             params: [
                 "scoreboard/task/count_down.ron",
                 "()",
                 "",
                 "3",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/task/count_down.ron",
             ],
         ),
         (
@@ -65,12 +83,24 @@
             ],
         ),
         (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/task/count_down.ron",
+            ],
+        ),
+        (
             kind: "task_exec",
             params: [
                 "scoreboard/task/count_down.ron",
                 "()",
                 "",
                 "1",
+            ],
+        ),
+        (
+            kind: "addr_virt_to_phy",
+            params: [
+                "scoreboard/task/count_down.ron",
             ],
         ),
         (
