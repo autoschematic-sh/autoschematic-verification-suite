@@ -3,7 +3,7 @@ cargo-features = ["edition2024"]
 name = "autoschematic-verification-core"
 description = "Core shared verification behaviour for Autoschematic."
 license = "MIT"
-version = "0.11.0"
+version = "0.12.0"
 edition = "2024"
 
 [dependencies]

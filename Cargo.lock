@@ -132,7 +132,7 @@ checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
 name = "autoschematic-connector-scoreboard-dummy"
-version = "0.11.0"
+version = "0.12.0"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -156,7 +156,7 @@ dependencies = [
 
 [[package]]
 name = "autoschematic-core"
-version = "0.11.0"
+version = "0.12.0"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -208,7 +208,7 @@ dependencies = [
 
 [[package]]
 name = "autoschematic-macros"
-version = "0.11.0"
+version = "0.12.0"
 dependencies = [
  "quote",
  "syn 2.0.108",
@@ -229,7 +229,7 @@ dependencies = [
 
 [[package]]
 name = "autoschematic-verification-core"
-version = "0.11.0"
+version = "0.12.0"
 dependencies = [
  "anyhow",
  "colored",
